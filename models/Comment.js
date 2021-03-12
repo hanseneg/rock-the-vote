@@ -23,11 +23,11 @@ const commentSchema = new Schema({
         ref: "User",
         required: true
     },
-    comment: {
+    issue: {
         type: Schema.Types.ObjectId,
         ref: "Issue",
         required: true
     }
 })
 
-module.exports = mongoose.model("Issue", commentSchema)
+module.exports = mongoose.model("Comment", commentSchema)
