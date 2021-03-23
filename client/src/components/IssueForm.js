@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { UserContext } from '../context/UserProvider'
+
+//form to submit a new issue??
 
 const initInputs = {
   title: "",

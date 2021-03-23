@@ -17,7 +17,7 @@ voteRouter.put('/up/issue/:issueId', (req, res, next) => {
     )
 })
 
-voteRouter.put('/up/issue/:issueId', (req, res, next) => {
+voteRouter.put('/down/issue/:issueId', (req, res, next) => {
     Issue.findByIdAndUpdate(
         { _id: req.params.issueId },
         { $pull: { votes: req.user._id } },
