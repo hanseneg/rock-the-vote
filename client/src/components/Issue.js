@@ -11,7 +11,7 @@ export default function Issue(props){
             <h2>{title}</h2>
             <p>{username}</p>
             <p>{description}</p>
-            <Votes _id={_id} votes={{upVotes: upVotes, downVotes: downVotes}}/>
+            {/* <Votes _id={_id} votes={{upVotes: upVotes, downVotes: downVotes}}/> */}
         </div>
     )
 }

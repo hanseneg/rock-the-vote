@@ -7,12 +7,7 @@ import { UserContext } from '../context/UserProvider.js'
 
 export default function Profile(){
   const { 
-    user: { username }, 
-    userIssues,
-    getUserIssues,
-    addIssue, 
-    issues 
-  } = useContext(UserContext)
+    user: { username }, userIssues, getUserIssues, addIssue } = useContext(UserContext)
 
   useEffect(() => {
     getUserIssues()
@@ -24,8 +19,13 @@ export default function Profile(){
       <h3>Add An Issue</h3>
       <IssueForm addIssue={addIssue}/>
       <h3>Your Issues</h3>
-      <IssueList issues={issues}/>
-
+      <div>
+        {[...userIssues].map(issue => {
+              return (
+                <Issue {...issue} />
+              )
+          })}
+      </div>
     </div>
   )
 }

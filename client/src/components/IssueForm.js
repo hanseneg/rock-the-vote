@@ -1,19 +1,14 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from '../context/UserProvider'
 
-//form to submit a new issue??
-
-const initInputs = {
-  title: "",
-  description: "",
-  comment: ""
-}
+//form to submit a new issue
 
 export default function IssueForm(props){
+  const { _id } = props
+  const { addIssue } = useContext(UserContext)
+  
+  const initInputs = { title: "", description: "" }
   const [inputs, setInputs] = useState(initInputs)
-  const { addIssue, addComment, _id } = props
-
-  const { title, description, comment } = inputs
 
   function handleChange(e){
     const {name, value} = e.target
@@ -26,7 +21,6 @@ export default function IssueForm(props){
   function handleSubmit(e){
     e.preventDefault()
     addIssue(inputs)
-    addComment(inputs, _id)
     setInputs(initInputs)
   }
 
@@ -35,21 +29,15 @@ export default function IssueForm(props){
       <input 
         type="text" 
         name="title" 
-        value={title} 
+        value={inputs.title} 
         onChange={handleChange} 
         placeholder="Title"/>
       <input 
         type="text" 
         name="description" 
-        value={description} 
+        value={inputs.description} 
         onChange={handleChange} 
         placeholder="Description"/>
-      <input 
-        type="text" 
-        name="comment" 
-        value={comment} 
-        onChange={handleChange} 
-        placeholder="Comment"/>
       <button>Add Issue</button>
     </form>
   )
