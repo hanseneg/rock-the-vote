@@ -4,7 +4,7 @@ export default function CommentForm(){
     
     return (
         <form>
-            <input />
+            <textarea />
             <button>Submit Comment</button>
         </form>
     )

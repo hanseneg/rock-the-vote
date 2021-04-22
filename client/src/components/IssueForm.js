@@ -32,7 +32,7 @@ export default function IssueForm(props){
         value={inputs.title} 
         onChange={handleChange} 
         placeholder="Title"/>
-      <input 
+      <textarea 
         type="text" 
         name="description" 
         value={inputs.description} 

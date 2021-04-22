@@ -6,8 +6,7 @@ import { UserContext } from '../context/UserProvider.js'
 
 
 export default function Profile(){
-  const { 
-    user: { username }, userIssues, getUserIssues, addIssue } = useContext(UserContext)
+  const {  user: { username }, userIssues, getUserIssues, addIssue } = useContext(UserContext)
 
   useEffect(() => {
     getUserIssues()
