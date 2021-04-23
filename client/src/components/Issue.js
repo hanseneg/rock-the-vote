@@ -15,8 +15,8 @@ export default function Issue(props){
         setCommentForm(!showCommentForm)
     }
 
-    const initComments = { comment: "" }
-    const [comment, setComment] = useState(initComments)
+    const initInput = { comment: "" }
+    const [comment, setComment] = useState(initInput)
 
     function handleChange(e){
         const {name, value} = e.target
@@ -28,8 +28,8 @@ export default function Issue(props){
 
     function handleSubmit(e){
         e.preventDefault()
-        addComment(comment)
-        setComment(initComments)
+        addComment(comment, _id)
+        setComment(initInput)
     }
 
     return (
