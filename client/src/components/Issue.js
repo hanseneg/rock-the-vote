@@ -1,21 +1,26 @@
 import React, { useState, useContext} from 'react'
 import { UserContext } from '../context/UserProvider'
+import Comment from '../components/Comment'
 import Votes from './Votes'
 
-//issue itself to be mapped over and shown individually in the public page
+//issue itself to be mapped over and shown individually in the public page and profile page 
+//in public page all issues are shown and in profile page only user's issues are shown 
 
 export default function Issue(props){
     const { title, description, _id, user: { username }, upVotes, downVotes } = props
 
-    const { addComment } = useContext(UserContext)
 
+    //for toggling the comment form on and off
     const [showCommentForm, setCommentForm] = useState(false)
 
     const showCommentForm1 = () => {
         setCommentForm(!showCommentForm)
     }
 
-    const initInput = { comment: "" }
+    //for adding a comment
+    const { addComment, getIssueComments } = useContext(UserContext)
+
+    const initInput = { comment: "" } 
     const [comment, setComment] = useState(initInput)
 
     function handleChange(e){
@@ -31,6 +36,9 @@ export default function Issue(props){
         addComment(comment, _id)
         setComment(initInput)
     }
+
+    //for displaying comments
+    //map over Comment here? to show comments for each issue or map over them in Comment.js component 
 
     return (
         <div>
@@ -52,6 +60,8 @@ export default function Issue(props){
                         <button >Submit Comment</button>
                 </form>
             )}
+            <button>Show all Comments</button>
+            <Comment />
         </div>
     )
 }
