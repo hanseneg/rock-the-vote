@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserProvider'
 //form to submit a new issue
 
 export default function IssueForm(props){
-  const { _id } = props
+  //const { _id } = props
   const { addIssue } = useContext(UserContext)
   
   const initInputs = { title: "", description: "" }

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect}from 'react'
 import { UserContext } from '../context/UserProvider'
 import Issue from './Issue.js'
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 
 
 //map over issues here and display all of them below using './Issue' template
@@ -12,7 +12,7 @@ export default function Public(){
 
   useEffect(() => {
     getAllIssues()
-  }, [])
+  }, [getAllIssues])
 
   return (
     <div className="public">

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext } from 'react'
+/* import React, {useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { UserContext } from '../context/UserProvider'
@@ -32,9 +32,9 @@ export default function IssueList(props){
     getIssueComments(issueId)
   }, []) */
   
-  return (
+  /* return (
     <div>
         
     </div>
   )
-}
+}  */

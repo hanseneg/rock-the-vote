@@ -1,16 +1,18 @@
 import React, { useContext, useEffect } from 'react'
 import IssueForm from './IssueForm.js'
-import IssueList from './IssueList'
+//import IssueList from './IssueList'
 import Issue from './Issue'
 import { UserContext } from '../context/UserProvider.js'
 
+
+//map over issues here and display user's issues below using './Issue' template
 
 export default function Profile(){
   const {  user: { username }, userIssues, getUserIssues, addIssue } = useContext(UserContext)
 
   useEffect(() => {
     getUserIssues()
-  }, [])
+  }, [getUserIssues])
 
   return (
     <div className="profile">
