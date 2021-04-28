@@ -1,21 +1,25 @@
 import React, { useContext, useEffect } from 'react'
 import { UserContext } from '../context/UserProvider'
-import { useParams } from 'react-router-dom'
+// import { useParams } from 'react-router-dom'
 
 export default function Comment(props){
 
     const { user: {username}, comment, getIssueComments, _id, issueComments } = useContext(UserContext) 
 
-    const { issueId } = useParams()
+    // const { issueId } = useParams()
 
-    useEffect(() => {
-        getIssueComments(issueId)
-      }, [getIssueComments])
+    // useEffect(() => {
+    //     getIssueComments(issueId)
+    //   }, [getIssueComments])
 
    /*  const { user: { username}, comment } = props  */
 
     return (
         <div>
+            <p>{username}</p>
+            <p>{comment}</p>
+        </div>
+        /* <div>
                 {[...issueComments].map(comment => {
                     return (
                         //<Comment key={comment._id} {...comment} />
@@ -25,6 +29,6 @@ export default function Comment(props){
                         </div>
                     )
                 })}
-        </div>
+        </div> */
     )
 }

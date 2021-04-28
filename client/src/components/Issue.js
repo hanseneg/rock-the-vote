@@ -1,15 +1,15 @@
-import React, { useState, useContext, /* useEffect */} from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { UserContext } from '../context/UserProvider'
 import Comment from '../components/Comment'
 //import Votes from './Votes'
-//import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 //issue itself to be mapped over and shown individually in the public page and profile page 
 //in public page all issues are shown and in profile page only user's issues are shown 
 
 export default function Issue(props){
     const { title, description, _id, user: { username }, /* upVotes, downVotes */ } = props
-    //const { issueId } = useParams()
+    const { issueId } = useParams()
 
     
 
@@ -21,11 +21,11 @@ export default function Issue(props){
     }
 
     //for adding a comment
-    const { addComment, /* getIssueComments, */ issueComments } = useContext(UserContext)
+    const { addComment, getIssueComments, issueComments } = useContext(UserContext)
 
-    // useEffect(() => {
-    //     getIssueComments(_id)
-    //   }, [])
+    useEffect(() => {
+        getIssueComments(issueId)
+      }, [])
 
     const initInput = { comment: "" } 
     const [comment, setComment] = useState(initInput)
@@ -71,17 +71,16 @@ export default function Issue(props){
                         <button>Submit Comment</button>
                 </form>
             )}
-            <Comment />
+            <div>
+                {[...issueComments].map(comment => {
+                    return (
+                        <Comment key={comment._id} {...comment} />
+                    )
+                })}
+            </div> 
            
             <button>Show all Comments</button>
         </div>
     )
 }
 
- /* <div>
-                {[...issueComments].map(comment => {
-                    return (
-                        <Comment key={comment._id} {...comment} />
-                    )
-                })}
-     </div> */
