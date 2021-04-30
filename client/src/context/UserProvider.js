@@ -124,12 +124,12 @@ export default function UserProvider(props){
                 signup, 
                 login,
                 logout,
-                getAllIssues,
+                getAllIssues: React.useCallback(getAllIssues, []),
                 allIssues,
-                getUserIssues,
+                getUserIssues: React.useCallback(getUserIssues, []),
                 addIssue,
                 issueComments,
-                getIssueComments,
+                getIssueComments: React.useCallback(getIssueComments, []),
                 addComment,
                 resetAuthError
             }}

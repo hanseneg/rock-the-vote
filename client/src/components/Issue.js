@@ -2,16 +2,19 @@ import React, { useState, useContext, useEffect } from 'react'
 import { UserContext } from '../context/UserProvider'
 import Comment from '../components/Comment'
 //import Votes from './Votes'
-import { useParams } from 'react-router-dom'
+//import { useParams } from 'react-router-dom'
 
 //issue itself to be mapped over and shown individually in the public page and profile page 
 //in public page all issues are shown and in profile page only user's issues are shown 
 
 export default function Issue(props){
-    const { title, description, _id, user: { username }, /* upVotes, downVotes */ } = props
-    const { issueId } = useParams()
+    const { title, description, _id, user: { username }, upVotes, downVotes } = props
 
-    
+    //way to grab values from url
+    //const { issueId } = useParams()
+
+    //logic so only person can like or dislike once
+    //checks to see if id is in upvotes or downvotes or neither to allow them to vote or not
 
     //for toggling the comment form on and off
     const [showCommentForm, setCommentForm] = useState(false)
@@ -23,9 +26,7 @@ export default function Issue(props){
     //for adding a comment
     const { addComment, getIssueComments, issueComments } = useContext(UserContext)
 
-    useEffect(() => {
-        getIssueComments(issueId)
-      }, [])
+    
 
     const initInput = { comment: "" } 
     const [comment, setComment] = useState(initInput)
@@ -46,6 +47,10 @@ export default function Issue(props){
         setComment(initInput)
     }
 
+
+    useEffect(() => {
+        getIssueComments(_id)
+      }, [getIssueComments, _id])
     
 
     //for displaying comments
@@ -57,6 +62,8 @@ export default function Issue(props){
             <p>{username}</p>
             <p>{description}</p>
             {/* <Votes _id={_id} votes={{upVotes: upVotes, downVotes: downVotes}}/> */}
+            <button>Agree{upVotes.Length}</button>
+            <button>Disagree{downVotes.Length}</button>
             <button onClick={showCommentForm1} >Leave a Comment</button>
 
             {showCommentForm && (
@@ -74,13 +81,13 @@ export default function Issue(props){
             <div>
                 {[...issueComments].map(comment => {
                     return (
-                        <Comment key={comment._id} {...comment} />
+                        <Comment key={comment._id} {...comment} _id={_id} /> 
+                        
                     )
                 })}
-            </div> 
+            </div>  
            
-            <button>Show all Comments</button>
+            {/* <button>Show all Comments</button> */}
         </div>
     )
 }
-

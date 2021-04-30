@@ -10,12 +10,15 @@ const issueSchema = new Schema({
         type: String,
         required: true
     },
+    //wrap in array
+    //no need to default
+
     upVotes: {
-        type: Schema.Types.ObjectId,
+        type: [Schema.Types.ObjectId],
         ref: "User"
     },
     downVotes: {
-        type: Schema.Types.ObjectId,
+        type: [Schema.Types.ObjectId],
         ref: "User"
     },
     date: {

@@ -35,6 +35,7 @@ issueRouter.get('/:issueId', (req, res, next) => {
     })
 })
 
+//..req.body, upVotes: [], 
 // Add new issue
 issueRouter.post("/", (req, res, next) => {
   req.body.user = req.user._id
