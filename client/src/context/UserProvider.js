@@ -106,14 +106,17 @@ export default function UserProvider(props){
     }
 
     function getIssueComments(issueId) {
-        userAxios.get(`/api/comment/issue/${issueId}`)
-            .then(res => setIssueComments(res.data))
+      return userAxios.get(`/api/comment/issue/${issueId}`)
+            //.then(res => setIssueComments(prevComment => [...prevComment, ...res.data]))
+            //.then(res => setIssueComments(res.data))
+            .then(res => res.data)
             .catch(err => console.log(err.response.data.errMsg))
     }
 
     function addComment(newComment, issueId) {
-        userAxios.post(`/api/comment/${issueId}`, newComment)
-            .then(res => setIssueComments(prevComment => [...prevComment, res.data]))
+       return userAxios.post(`/api/comment/${issueId}`, newComment)
+            //.then(res => setIssueComments(prevComment => [...prevComment, ...res.data]))
+            .then(res => res.data)
             .catch(err => console.log(err.response.data.errMsg))
     }
 

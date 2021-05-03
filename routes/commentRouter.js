@@ -4,12 +4,14 @@ const Comment = require('../models/comment.js')
 
 // get all comments by issue
 commentRouter.get("/issue/:issueId", (req, res, next) => {
-    Comment.find({ issue: req.params.issueId }, (err, comments) => {
-      if(err){
-        res.status(500)
-        return next(err)
-      }
-      return res.status(200).send(comments)
+    Comment.find({ issue: req.params.issueId })
+      .populate("user")
+      .exec((err, comments) => {
+        if(err) {
+          res.status(500)
+          return next(err)
+        }
+        return res.status(200).send(comments)
     })
   })
 
@@ -41,12 +43,29 @@ commentRouter.post("/:issueId", (req, res, next) => {
   req.body.issue = req.params.issueId
   const newComment = new Comment(req.body)
   newComment.save((err, savedComment) => {
-    if(err){
-      res.status(500)
-      return next(err)
-    }
-    return res.status(201).send(savedComment)
+    Comment.populate(
+      savedComment,
+      { path: "user", select: "username" },
+      (err) => {
+        if(err){
+          res.status(500)
+          return next(err)
+        }
+        return res.status(201).send(savedComment)
+      }
+    )
   })
 })
 
 module.exports = commentRouter
+
+/* 
+commentRouter.get("/issue/:issueId", (req, res, next) => {
+  Comment.find({ issue: req.params.issueId }, (err, comments) => {
+    if(err){
+      res.status(500)
+      return next(err)
+    }
+    return res.status(200).send(comments)
+  })
+}) */

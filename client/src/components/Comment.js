@@ -9,7 +9,7 @@ export default function Comment(props){
 
     return (
         <div>
-            <p>{username}</p>
+            <p>Comment left by: {username}</p>
             <p>{comment}</p>
         </div>
     )

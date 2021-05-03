@@ -30,7 +30,7 @@ export default function Issue(props){
 
     const initInput = { comment: "" } 
     const [comment, setComment] = useState(initInput)
-
+    const [comments, setComments] = useState([])
     
 
     function handleChange(e){
@@ -44,13 +44,15 @@ export default function Issue(props){
     function handleSubmit(e){
         e.preventDefault()
         addComment(comment, _id)
+            .then(data => setComments(prevComments => [...prevComments, data]))
         setComment(initInput)
     }
 
-
+    
     useEffect(() => {
         getIssueComments(_id)
-      }, [getIssueComments, _id])
+        .then(data => setComments(data))
+      }, [getIssueComments, _id, setComments])
     
 
     //for displaying comments
@@ -79,10 +81,9 @@ export default function Issue(props){
                 </form>
             )}
             <div>
-                {[...issueComments].map(comment => {
+                {comments.map(comment => {
                     return (
                         <Comment key={comment._id} {...comment} _id={_id} /> 
-                        
                     )
                 })}
             </div>  
