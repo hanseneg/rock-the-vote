@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react'
 import { UserContext } from '../context/UserProvider'
 import Comment from '../components/Comment'
 //import Votes from './Votes'
-//import { useParams } from 'react-router-dom'
 
 //issue itself to be mapped over and shown individually in the public page and profile page 
 //in public page all issues are shown and in profile page only user's issues are shown 
@@ -10,8 +9,6 @@ import Comment from '../components/Comment'
 export default function Issue(props){
     const { title, description, _id, user: { username }, upVotes, downVotes } = props
 
-    //way to grab values from url
-    //const { issueId } = useParams()
 
     //logic so only person can like or dislike once
     //checks to see if id is in upvotes or downvotes or neither to allow them to vote or not
@@ -24,10 +21,7 @@ export default function Issue(props){
     }
 
     //for adding a comment
-    const { addComment, getIssueComments, issueComments } = useContext(UserContext)
-
-    
-
+    const { addComment, getIssueComments, upVote, downVote } = useContext(UserContext)
     const initInput = { comment: "" } 
     const [comment, setComment] = useState(initInput)
     const [comments, setComments] = useState([])
@@ -48,12 +42,18 @@ export default function Issue(props){
         setComment(initInput)
     }
 
-    
     useEffect(() => {
         getIssueComments(_id)
         .then(data => setComments(data))
       }, [getIssueComments, _id, setComments])
     
+    function upVoting(){
+        upVote(_id)
+    }
+
+    function downVoting(){
+        downVote(_id)
+    }
 
     //for displaying comments
     //map over Comment here? to show comments for each issue or map over them in Comment.js component 
@@ -64,8 +64,10 @@ export default function Issue(props){
             <p>{username}</p>
             <p>{description}</p>
             {/* <Votes _id={_id} votes={{upVotes: upVotes, downVotes: downVotes}}/> */}
-            <button>Agree{upVotes.Length}</button>
-            <button>Disagree{downVotes.Length}</button>
+            <button onClick={upVoting}>Agree</button>
+            <p>{upVotes.length}</p>
+            <button onClick={downVoting}>Disagree</button>
+            <p>{downVotes.length}</p>
             <button onClick={showCommentForm1} >Leave a Comment</button>
 
             {showCommentForm && (
@@ -92,3 +94,8 @@ export default function Issue(props){
         </div>
     )
 }
+
+
+
+    //way to grab values from url
+    //const { issueId } = useParams()

@@ -21,7 +21,8 @@ export default function UserProvider(props){
 
     const [userState, setUserState] = useState(initState)
     const [allIssues, setAllIssues] = useState([])
-    const [issueComments, setIssueComments] = useState([])
+    //moved to Issue.js
+    //const [issueComments, setIssueComments] = useState([])
 
     function signup(credentials){
         axios.post('/auth/signup', credentials)
@@ -120,6 +121,18 @@ export default function UserProvider(props){
             .catch(err => console.log(err.response.data.errMsg))
     }
 
+    function upVote(issueId) {
+        userAxios.put(`/api/vote/up/issue/${issueId}`)
+            .then(res => console.log())
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
+    function downVote(issueId) {
+        userAxios.put(`/api/vote/down/issue/${issueId}`)
+            .then(res => console.log())
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
     return (
         <UserContext.Provider
             value={{
@@ -131,10 +144,12 @@ export default function UserProvider(props){
                 allIssues,
                 getUserIssues: React.useCallback(getUserIssues, []),
                 addIssue,
-                issueComments,
+                //issueComments,
                 getIssueComments: React.useCallback(getIssueComments, []),
                 addComment,
-                resetAuthError
+                resetAuthError,
+                upVote,
+                downVote
             }}
         >
             { props.children }

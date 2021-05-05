@@ -1,15 +1,12 @@
-import React, { useContext, useEffect } from 'react'
-import { UserContext } from '../context/UserProvider'
+import React from 'react'
 
 export default function Comment(props){
-
-    //const { user: {username}, comment, _id } = useContext(UserContext) 
 
    const { user: { username }, comment } = props
 
     return (
         <div>
-            <p>Comment left by: {username}</p>
+            <h4>Comment left by: {username}</h4>
             <p>{comment}</p>
         </div>
     )
