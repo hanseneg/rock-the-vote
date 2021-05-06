@@ -25,7 +25,11 @@ export default function Issue(props){
     const initInput = { comment: "" } 
     const [comment, setComment] = useState(initInput)
     const [comments, setComments] = useState([])
+    //const [upVoters, setUpVoters] = useState(upVotes)
+    //const [downVoters, setDownVoters] = useState(downVotes)
     
+
+    //put votes in state?
 
     function handleChange(e){
         const {name, value} = e.target
@@ -55,6 +59,9 @@ export default function Issue(props){
         downVote(_id)
     }
 
+    
+    
+
     //for displaying comments
     //map over Comment here? to show comments for each issue or map over them in Comment.js component 
 
@@ -64,12 +71,15 @@ export default function Issue(props){
             <p>{username}</p>
             <p>{description}</p>
             {/* <Votes _id={_id} votes={{upVotes: upVotes, downVotes: downVotes}}/> */}
-            <button onClick={upVoting}>Agree</button>
-            <p>{upVotes.length}</p>
-            <button onClick={downVoting}>Disagree</button>
-            <p>{downVotes.length}</p>
-            <button onClick={showCommentForm1} >Leave a Comment</button>
 
+
+            <button  onClick={upVoting} >Agree</button>
+            <p>{upVotes.length}</p>
+            <button onClick={downVoting} >Disagree</button>
+            <p>{downVotes.length}</p>
+
+
+            <button onClick={showCommentForm1} >Leave a Comment</button>
             {showCommentForm && (
                 <form onSubmit={handleSubmit}>
                         <textarea 
@@ -99,3 +109,11 @@ export default function Issue(props){
 
     //way to grab values from url
     //const { issueId } = useParams()
+
+    //upVote and downVote from context are actually like upVoting and downVoting
+
+    // function onUpVote(){
+    //     upVote(upVoters, _id)
+    //         .then(voteData => setUpVoters(prevVotes => [...prevVotes, voteData]))
+    //     setUpVoters(upVotes)
+    // }
