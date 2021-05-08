@@ -5,7 +5,10 @@ const Issue = require('../models/issue.js')
 voteRouter.put('/up/issue/:issueId', (req, res, next) => {
     Issue.findByIdAndUpdate(
         { _id: req.params.issueId },
-        { $addToSet: { upVotes: req.user._id } },
+        { 
+            $addToSet: { upVotes: req.user._id },
+            $pull: { downVotes: req.user._id }
+        },
         { new: true },
         (err, upVotedIssue) => {
             if(err) {
@@ -20,7 +23,10 @@ voteRouter.put('/up/issue/:issueId', (req, res, next) => {
 voteRouter.put('/down/issue/:issueId', (req, res, next) => {
     Issue.findByIdAndUpdate(
         { _id: req.params.issueId },
-        { $addToSet: { downVotes: req.user._id } },
+        { 
+            $addToSet: { downVotes: req.user._id },
+            $pull: { upVotes: req.user._id }
+        },
         { new: true },
         (err, downVotedIssue) => {
             if(err) {

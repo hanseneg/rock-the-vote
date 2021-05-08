@@ -121,15 +121,18 @@ export default function UserProvider(props){
             .catch(err => console.log(err.response.data.errMsg))
     }
 
+    //logic to allow votes to show up correctly in profile page 
+    //logic=check user issues for issue ids like below ise if else statement
+
     function upVote(issueId) {
         userAxios.put(`/api/vote/up/issue/${issueId}`)
-            .then(res => console.log())
+            .then(res => setAllIssues(prevIssues => prevIssues.map(issue => issue._id === issueId ? res.data : issue)))
             .catch(err => console.log(err.response.data.errMsg))
     }
 
     function downVote(issueId) {
         userAxios.put(`/api/vote/down/issue/${issueId}`)
-            .then(res => console.log())
+            .then(res => setAllIssues(prevIssues => prevIssues.map(issue => issue._id === issueId ? res.data : issue)))
             .catch(err => console.log(err.response.data.errMsg))
     }
 
