@@ -122,7 +122,7 @@ export default function UserProvider(props){
     }
 
     //logic to allow votes to show up correctly in profile page 
-    //logic=check user issues for issue ids like below ise if else statement
+    //logic=check user issues for issue ids like below use if else statement?
 
     function upVote(issueId) {
         userAxios.put(`/api/vote/up/issue/${issueId}`)
