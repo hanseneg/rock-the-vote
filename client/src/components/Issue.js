@@ -67,19 +67,20 @@ export default function Issue(props){
 
     return (
         <div>
+            <hr className='hr'/>
             <h2>{title}</h2>
             <p>{username}</p>
-            <p>{description}</p>
+            <p className='description'>{description}</p>
             {/* <Votes _id={_id} votes={{upVotes: upVotes, downVotes: downVotes}}/> */}
 
 
-            <button  onClick={upVoting} >Agree</button>
+            <button className='button' onClick={upVoting} >Agree</button>
             <p>{upVotes.length}</p>
-            <button onClick={downVoting} >Disagree</button>
+            <button className='button' onClick={downVoting} >Disagree</button>
             <p>{downVotes.length}</p>
 
 
-            <button onClick={showCommentForm1} >Leave a Comment</button>
+            <button className='button' onClick={showCommentForm1} >Leave a Comment</button>
             {showCommentForm && (
                 <form onSubmit={handleSubmit}>
                         <textarea 
@@ -89,7 +90,7 @@ export default function Issue(props){
                             placeholder='Comment'
                             value={comment.comment}
                         />
-                        <button>Submit Comment</button>
+                        <button className='button'>Submit Comment</button>
                 </form>
             )}
             <div>
@@ -99,6 +100,7 @@ export default function Issue(props){
                     )
                 })}
             </div>  
+            
            
             {/* <button>Show all Comments</button> */}
         </div>

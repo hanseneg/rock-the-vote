@@ -1,0 +1,83 @@
+body {  color: #111; 
+        font-family: 'Helvetica Neue', sans-serif; 
+        font-weight: bold; 
+        letter-spacing: -1px; 
+        line-height: 1; 
+        text-align: center; 
+}
+
+/* mouse over member or not toggle  */
+.pointer:hover {
+    cursor: pointer;
+}
+
+/* divider */
+.hr {
+    border-top: 3px solid #111;
+    border-radius: 5px;
+}
+
+h1 {
+    font-size: 45px;
+}
+h2 {
+    font-size: 35px;
+}
+h3 {
+    font-size: 25px;
+}
+
+/* nav buttons */
+.nav {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #111; 
+}
+/* logout button */
+.logout {
+    border: none;
+    cursor: pointer;
+    background: none;
+    color: #111; 
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-weight: bold; 
+    letter-spacing: -1px; 
+    line-height: 1; 
+    font-size: 25px;
+}
+
+/* buttons */
+.button {
+    background-color: #111;
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+/* issue form */
+/* use padding to add space inside textbox */
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form input,
+.form textarea {
+    width: 200px;
+    margin-bottom: 15px;
+    border: 2px solid #111;
+}
+.form input:focus,
+.form textarea:focus {
+    background-color: rgb(160, 160, 160);
+}
+
+/* description */
+.description {
+    font-size: 20px;
+}

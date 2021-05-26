@@ -25,7 +25,7 @@ export default function IssueForm(props){
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='form' onSubmit={handleSubmit}>
       <input 
         type="text" 
         name="title" 
@@ -38,7 +38,7 @@ export default function IssueForm(props){
         value={inputs.description} 
         onChange={handleChange} 
         placeholder="Description"/>
-      <button>Add Issue</button>
+      <button className='button'>Add Issue</button>
     </form>
   )
 }

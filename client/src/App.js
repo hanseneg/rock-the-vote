@@ -6,6 +6,7 @@ import Profile from './components/Profile.js'
 import Public from './components/Public.js'
 import { UserContext } from './context/UserProvider.js'
 import ProtectedRoute from './components/ProtectedRoute'
+import './css/style.css'
 
 export default function App(){
   const { token, logout } = useContext(UserContext)
