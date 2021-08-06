@@ -121,6 +121,8 @@ export default function UserProvider(props){
             .catch(err => console.log(err.response.data.errMsg))
     }
 
+    //fix this to show votes in profile page without having to refresh
+
     //logic to allow votes to show up correctly in profile page 
     //logic=check user issues for issue ids like below use if else statement?
 

@@ -7,7 +7,7 @@ import Comment from '../components/Comment'
 //in public page all issues are shown and in profile page only user's issues are shown 
 
 export default function Issue(props){
-    const { title, description, _id, user: { username }, upVotes, downVotes } = props
+    const { title, description, _id, upVotes, downVotes } = props
 
 
     //logic so only person can like or dislike once
@@ -21,7 +21,7 @@ export default function Issue(props){
     }
 
     //for adding a comment
-    const { addComment, getIssueComments, upVote, downVote } = useContext(UserContext)
+    const { addComment, getIssueComments, upVote, downVote, user: { username }, } = useContext(UserContext)
     const initInput = { comment: "" } 
     const [comment, setComment] = useState(initInput)
     const [comments, setComments] = useState([])
@@ -69,7 +69,8 @@ export default function Issue(props){
         <div>
             <hr className='hr'/>
             <h2>{title}</h2>
-            <p>{username}</p>
+            {/* username does not show up for some reason */}
+            <p>Issue left by: {username}</p>
             <p className='description'>{description}</p>
             {/* <Votes _id={_id} votes={{upVotes: upVotes, downVotes: downVotes}}/> */}
 
