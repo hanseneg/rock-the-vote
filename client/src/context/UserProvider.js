@@ -128,13 +128,19 @@ export default function UserProvider(props){
 
     function upVote(issueId) {
         userAxios.put(`/api/vote/up/issue/${issueId}`)
-            .then(res => setAllIssues(prevIssues => prevIssues.map(issue => issue._id === issueId ? res.data : issue)))
+            .then(res => {
+                setAllIssues(prevIssues => prevIssues.map(issue => issue._id === issueId ? res.data : issue))
+                getUserIssues(prevIssues => prevIssues.map(issue => issue._id === issueId ? res.data : issue))
+            })
             .catch(err => console.log(err.response.data.errMsg))
     }
 
     function downVote(issueId) {
         userAxios.put(`/api/vote/down/issue/${issueId}`)
-            .then(res => setAllIssues(prevIssues => prevIssues.map(issue => issue._id === issueId ? res.data : issue)))
+            .then(res => {
+                setAllIssues(prevIssues => prevIssues.map(issue => issue._id === issueId ? res.data : issue))
+                getUserIssues(prevIssues => prevIssues.map(issue => issue._id === issueId ? res.data : issue))
+            })
             .catch(err => console.log(err.response.data.errMsg))
     }
 
